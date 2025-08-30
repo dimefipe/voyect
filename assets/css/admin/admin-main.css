@@ -1,0 +1,241 @@
+/* ==========================================================================
+   Voyect – Admin UI v0.4
+   - Fix: evitar solapamiento del badge de estado
+   - Modal: overlay + diálogo + animaciones + layout
+   ========================================================================== */
+
+/* ---------- THEME TOKENS ------------------------------------------------- */
+.voyect-admin{
+  --bg:#0b1220;
+  --card:#fff;
+  --ink:#1f2a37;
+  --muted:#8ea1b5;
+  --line:#e6e9ef;
+  --chip:#223147;
+  --chip-bg:#f7f8fb;
+  --chip-active-bg:#e9e5ff;
+  --chip-active-border:#d1c6ff;
+  --accent:#6c47ff;
+  --accent-ink:#3b2ccf;
+  --thumb-bg:#f0f3f7;
+}
+
+/* ---------- TITLES ------------------------------------------------------- */
+.voyect-title{ margin:16px 0 24px; color:var(--ink); }
+.voyect-sub{ color:var(--muted); font-weight:400; margin-left:8px; }
+
+/* ---------- GRID --------------------------------------------------------- */
+.voyect-grid{
+  display:grid; grid-template-columns:1fr 360px; gap:24px; align-items:start;
+}
+.voyect-col{
+  background:var(--card);
+  border:1px solid var(--line);
+  border-radius:12px;
+  padding:16px;
+}
+.voyect-col--list{ min-height:540px; }
+
+/* ---------- LIST HEADER -------------------------------------------------- */
+.voyect-list__header{
+  display:flex; gap:12px; align-items:center; flex-wrap:wrap; margin-bottom:8px;
+}
+.voyect-search input{ width:340px; max-width:100%; }
+.voyect-chips{ display:flex; gap:8px; flex-wrap:wrap; }
+.chip{
+  border:1px solid #d9dce2; background:var(--chip-bg); color:#4b5563;
+  border-radius:999px; padding:6px 10px; font-size:12px; line-height:1; cursor:pointer;
+  transition:background .15s ease, border-color .15s ease, color .15s ease, box-shadow .15s ease;
+}
+.chip:hover{ background:#eef1f6; }
+.chip.is-active{
+  background:var(--chip-active-bg); border-color:var(--chip-active-border); color:var(--accent-ink);
+  box-shadow:0 0 0 2px rgba(108,71,255,.08) inset;
+}
+
+/* ---------- LIST --------------------------------------------------------- */
+.voyect-list{ list-style:none; margin:16px 0 0; padding:0; }
+
+/* CARD */
+.voyect-item{
+  position:relative;
+  display:grid; grid-template-columns:32px 72px 1fr auto;
+  gap:12px; align-items:center;
+  border:1px solid var(--line); border-radius:12px; padding:10px 12px; background:#fff; margin-bottom:12px;
+  transition:box-shadow .15s ease, border-color .15s ease, transform .06s ease;
+}
+.voyect-item:hover{ border-color:#dfe5ee; box-shadow:0 4px 14px rgba(9,30,66,.06); }
+.voyect-item:active{ transform:translateY(1px); }
+
+/* guía vertical junto al handle */
+.voyect-item::before{
+  content:""; position:absolute; left:6px; top:8px; bottom:8px; width:2px; border-radius:2px; background:#e7ebf3;
+}
+
+/* HANDLE */
+.voyect-handle{
+  cursor:grab; color:#98a3b4; display:flex; align-items:center; justify-content:center; font-size:18px; user-select:none;
+}
+.voyect-handle:active{ cursor:grabbing; }
+
+/* THUMB */
+.voyect-thumb{
+  width:72px; height:48px; border-radius:8px; background:var(--thumb-bg);
+  display:flex; align-items:center; justify-content:center; border:1px solid var(--line); overflow:hidden;
+}
+.voyect-thumb img{ width:100%; height:100%; object-fit:cover; }
+
+/* META (reservamos espacio para el badge) */
+.voyect-meta .voyect-title{
+  position:relative;
+  display:flex; align-items:center; gap:8px;
+  margin:0 0 4px; font-size:14px; color:var(--ink); font-weight:600;
+  padding-right:96px;                  /* espacio fijo para el badge */
+  min-height:20px;
+}
+.voyect-cats{ color:#7a8797; font-size:12px; }
+.voyect-cats .chip{ padding:4px 8px; font-size:11px; cursor:default; }
+
+/* BADGE estado (no solapa gracias al padding-right del título) */
+.voyect-status{
+  position:absolute; right:0; top:0;
+  font-size:11px; line-height:1; padding:6px 8px; border-radius:999px;
+  background:#eef2ff; color:#4f46e5; border:1px solid #dfe3ff; text-transform:capitalize;
+  z-index:1;
+}
+.voyect-status--publish{  background:#eefbf2; color:#0f7a3d; border-color:#d7f5e1; }
+.voyect-status--draft{    background:#fff7ed; color:#9a3412; border-color:#ffe7d1; }
+.voyect-status--pending{  background:#fffbe6; color:#8a6d1a; border-color:#f3e9b5; }
+.voyect-status--private{  background:#f3f4f6; color:#374151; border-color:#e5e7eb; }
+
+/* ACTIONS */
+.voyect-actions{ display:inline-flex; align-items:center; gap:6px; }
+.voyect-actions .button{
+  min-width:28px; height:28px; padding:0 6px; display:inline-flex; align-items:center; justify-content:center;
+  border-radius:6px; margin-left:0;
+}
+.voyect-actions .button:hover{ box-shadow:0 1px 0 rgba(0,0,0,.06) inset; }
+.voyect-actions .button:focus{ outline:0; box-shadow:0 0 0 2px rgba(108,71,255,.3); }
+.voyect-actions .button .ri{ font-size:16px; line-height:1; }
+
+/* ---------- SKELETONS ---------------------------------------------------- */
+.is-skeleton .sk-box,
+.is-skeleton .sk-line,
+.is-skeleton .sk-btn{
+  display:block;
+  background:linear-gradient(90deg,#f3f4f6 25%,#eef1f5 37%,#f3f4f6 63%);
+  background-size:400% 100%;
+  animation:voyShine 1.2s ease-in-out infinite;
+  border-radius:8px;
+}
+.is-skeleton .sk-box{ width:72px; height:48px; }
+.is-skeleton .sk-line{ height:12px; margin:6px 0; width:180px; }
+.is-skeleton .sk-btn{ width:28px; height:28px; border-radius:6px; display:inline-block; }
+@keyframes voyShine{ 0%{background-position:100% 0} 100%{background-position:0 0} }
+
+/* ---------- SHORTCODE PANEL --------------------------------------------- */
+.voyect-col--shortcode .voyect-card{ border:1px solid var(--line); border-radius:12px; padding:14px; background:#fff; }
+.voyect-col--shortcode h2{ margin:0 0 12px; font-size:16px; color:var(--ink); }
+
+.voyect-shortcode__row{ display:flex; gap:8px; align-items:stretch; margin-bottom:10px; }
+.voyect-shortcode__row--stack{ flex-direction:column; }
+.voyect-shortcode__row--stack #voyect-copy.button{ width:100%; justify-content:center; }
+
+/* soporte input/textarea (recomendado: <textarea id="voyect-shortcode">) */
+#voyect-shortcode{
+  flex:1; display:block; width:100%;
+  padding:8px 10px; border:1px solid var(--line); border-radius:8px; background:#fbfcfe;
+  font-family:ui-monospace,SFMono-Regular,Menlo,Monaco,Consolas,"Liberation Mono",monospace;
+  font-size:12px; color:#111827; line-height:1.45;
+  min-height:42px; max-height:220px; resize:vertical; overflow:auto;
+  white-space:pre-wrap; word-break:break-word;
+}
+#voyect-shortcode:focus{ outline:none; border-color:#cfd9ff; box-shadow:0 0 0 3px rgba(108,71,255,.15); }
+
+#voyect-copy.button{ display:inline-flex; align-items:center; gap:6px; border-radius:8px; }
+#voyect-copy.is-copied{ background:var(--accent); border-color:var(--accent); color:#fff; }
+
+/* Campos de configuración */
+.voyect-two{ display:grid; grid-template-columns:1fr 1fr; gap:10px; }
+.voyect-field{ display:grid; gap:6px; }
+.voyect-field span{ font-size:12px; color:#6b7280; }
+.voyect-check{ display:flex; align-items:center; gap:8px; font-size:13px; color:#334155; }
+
+/* ---------- PAGINATION --------------------------------------------------- */
+.voyect-pager{ display:flex; gap:10px; align-items:center; justify-content:flex-end; margin-top:10px; }
+
+/* ---------- MODAL (Quick Edit) ------------------------------------------ */
+/* VER: el JS solo debe alternar aria-hidden="true/false" en .voyect-modal */
+
+.voyect-modal{
+  position:fixed; inset:0; display:none;
+  align-items:center; justify-content:center;
+  padding:24px;                                   /* margen interior en pantallas pequeñas */
+  background:rgba(17,24,39,.45);                  /* overlay */
+  z-index:100000;                                 /* por encima del admin bar */
+  -webkit-backdrop-filter:saturate(120%) blur(2px);
+  backdrop-filter:saturate(120%) blur(2px);
+}
+.voyect-modal[aria-hidden="false"]{ display:flex; }
+
+.voyect-modal__dialog{
+  width:100%; max-width:720px;
+  background:#fff; border:1px solid var(--line); border-radius:14px;
+  box-shadow:0 20px 60px rgba(0,0,0,.22);
+  overflow:hidden;
+  transform:translateY(6px) scale(.985); opacity:0;
+  animation:voyModalIn .18s ease forwards;
+}
+@keyframes voyModalIn{
+  to{ transform:translateY(0) scale(1); opacity:1; }
+}
+
+.voyect-modal__dialog > header{
+  display:flex; align-items:center; justify-content:space-between;
+  gap:12px; padding:14px 16px; border-bottom:1px solid var(--line);
+}
+.voyect-modal__dialog > header h2{
+  margin:0; font-size:16px; color:var(--ink);
+}
+.voyect-modal__close{
+  border:none; background:transparent; cursor:pointer;
+  font-size:22px; line-height:1; padding:2px 6px; border-radius:8px; color:#6b7280;
+}
+.voyect-modal__close:hover{ background:#f3f4f6; color:#111827; }
+
+.voyect-modal__body{ padding:16px; display:grid; gap:12px; }
+.voyect-modal__body .voyect-field input[type="text"],
+.voyect-modal__body .voyect-field input[type="number"],
+.voyect-modal__body .voyect-field select{
+  border-radius:8px;
+}
+
+.voyect-modal__dialog > footer{
+  display:flex; gap:10px; justify-content:flex-end;
+  padding:14px 16px; border-top:1px solid var(--line); background:#fcfcfd;
+}
+
+/* chips de categorías dentro del modal */
+#edit-cats{ display:flex; flex-wrap:wrap; gap:8px; }
+#edit-cats .chip{ user-select:none; }
+#edit-cats .chip.is-active{ box-shadow:0 0 0 2px rgba(108,71,255,.14) inset; }
+
+/* ---------- RESPONSIVE --------------------------------------------------- */
+@media (max-width:1200px){
+  .voyect-grid{ grid-template-columns:1fr; }
+}
+@media (max-width:780px){
+  .voyect-item{ grid-template-columns:24px 64px 1fr; }
+  .voyect-actions{ grid-column:1 / -1; justify-content:flex-end; }
+  .voyect-meta .voyect-title{ padding-right:88px; }
+}
+@media (max-width:640px){
+  .voyect-shortcode__row{ flex-direction:column; }
+  #voyect-copy.button{ width:100%; justify-content:center; }
+  .voyect-meta .voyect-title{ padding-right:80px; }
+}
+
+/* ---------- DEBUG HOOKS -------------------------------------------------- */
+/* Descomentar en caso de inspección
+.voyect-item{ outline:0 solid red; }
+*/

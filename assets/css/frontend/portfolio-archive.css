@@ -1,0 +1,35 @@
+/**
+ * portfolio-archive.css
+ * Estilos básicos para el grid de proyectos en el frontend.
+ * CHANGE: creamos stub inicial para eliminar 404 y preparar estilos reales.
+ */
+
+.voyect-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  gap: 24px;
+  margin: 2rem 0;
+}
+
+.voyect-item {
+  background: #fff;
+  border: 1px solid #e5e5e5;
+  border-radius: 8px;
+  overflow: hidden;
+  transition: box-shadow .2s ease;
+}
+
+.voyect-item:hover {
+  box-shadow: 0 4px 12px rgba(0,0,0,.08);
+}
+
+.voyect-item img {
+  width: 100%;
+  height: auto;
+  display: block;
+}
+
+.voyect-item h3 {
+  font-size: 1rem;
+  margin: 12px;
+}

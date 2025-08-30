@@ -1,0 +1,8 @@
+.voyect-modal[aria-hidden="true"]{ display:none; }
+.voyect-modal{ position:fixed; inset:0; background:rgba(0,0,0,.35); z-index:100000; display:flex; align-items:center; justify-content:center; padding:20px; }
+.voyect-modal__dialog{ width:520px; max-width:100%; background:#fff; border-radius:12px; overflow:hidden; box-shadow:0 10px 30px rgba(0,0,0,.15); }
+.voyect-modal__dialog header, .voyect-modal__dialog footer{ padding:14px 16px; background:#f7f8fb; display:flex; align-items:center; justify-content:space-between; }
+.voyect-modal__body{ padding:16px; display:grid; gap:12px; }
+.voyect-modal__close{ background:transparent; border:0; font-size:22px; cursor:pointer; }
+.voyect-field{ display:grid; gap:6px; }
+.voyect-check{ display:flex; gap:8px; align-items:center; margin:6px 0; }
