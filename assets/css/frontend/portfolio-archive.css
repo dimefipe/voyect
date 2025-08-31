@@ -4,7 +4,7 @@
  * CHANGE: creamos stub inicial para eliminar 404 y preparar estilos reales.
  */
 
-.voyect-grid {
+/* .voyect-grid {
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
   gap: 24px;
@@ -32,4 +32,268 @@
 .voyect-item h3 {
   font-size: 1rem;
   margin: 12px;
+} */
+
+/* === UI dark (solo estilos/maquetación) === */
+.voyect-ui {
+  color: #e6f4f1;
+}
+
+/* Header */
+.portafolio__filtros {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: 2rem;
+}
+.portafolio__buscador--box {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+}
+.portafolio__buscador {
+  background: #f2fbfd !important;
+  border: 3px solid #88bac1 !important;
+  border-radius: 24px !important;
+  text-align: center;
+  max-width: 600px !important;
+  width: 100% !important;
+}
+.portafolio__buscador:focus {
+  border: 3px solid #ffb000 !important;
+}
+@media (max-width: 1024px) {
+  .portafolio__buscador--box {
+    padding-top: 0.5rem;
+    margin-bottom: 0.5rem;
+  }
+  .portafolio__buscador {
+    border: 2px solid #88bac1 !important;
+  }
+  .portafolio__buscador:focus {
+    border: 2px solid #ffb000 !important;
+  }
+}
+@media (max-width: 767px) {
+  .portafolio__buscador {
+    font-size: 12px !important;
+    padding: 6px !important;
+    min-height: inherit !important;
+    height: inherit !important;
+    border: 2px solid #88bac1 !important;
+  }
+  .portafolio__buscador:focus {
+    border: 2px solid #ffb000 !important;
+  }
+}
+
+/* Botonera filtros */
+.portafolio__filtros--box {
+  display: flex;
+  gap: 12px;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+.portafolio__filtros--box button {
+  background: #00272d;
+  color: #fff;
+  border: 1px solid #00424d;
+  border-radius: 8px;
+  padding: 0.6rem 1rem;
+  font-weight: 700;
+  letter-spacing: 0.02em;
+  text-transform: uppercase;
+}
+.portafolio__filtros--box button:hover {
+  background: #00b5cf;
+}
+.portafolio__filtros--box button.active {
+  background: #ffb000;
+  color: #001519;
+}
+
+/* Grid (el contenido lo pinta tu JS) */
+.portafolio__listado {
+  position: relative;
+}
+.portafolio__proyectos {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  grid-gap: 1rem;
+  grid-row-gap: 124px;
+  padding-top: 100px;
+}
+
+/* Estilos para las cards (añade estas clases en el HTML que renderiza tu JS) */
+.portafolio__proyecto {
+  background: #00272d;
+  border: 1px solid #00424d;
+  border-radius: 16px;
+  padding: 20px;
+  position: relative;
+  padding-top: 180px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  gap: 8px;
+}
+.portafolio__proyecto a {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  text-decoration: none;
+}
+.portafolio__img {
+  position: relative;
+}
+.portafolio__img img {
+  position: absolute;
+  bottom: 0;
+  mask-image: linear-gradient(
+    to bottom,
+    rgba(0, 0, 0, 1) 0%,
+    rgba(0, 0, 0, 1) 60%,
+    rgba(0, 0, 0, 0) 100%
+  );
+  transition: 0.3s ease-in-out;
+  width: 100%;
+  height: auto;
+}
+.portafolio__titulo h3 {
+  color: #fff;
+  font-size: 16px;
+  transition: 0.3s;
+  margin: 0;
+}
+.portafolio__proyecto a:hover h3 {
+  color: #ffb000;
+}
+.portafolio__proyecto a:hover .portafolio__img img {
+  transform: scale(1.17) translateY(-20px);
+}
+.portafolio__categorias {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+.portafolio__categoria {
+  background: #00272d;
+  border: 1px solid #00424d;
+  color: #b7bbbc;
+  padding: 4px 8px;
+  border-radius: 8px;
+  font-size: 10px;
+  cursor: pointer;
+}
+.portafolio__categoria:hover {
+  background: #ffb000;
+  color: #001519;
+}
+.portafolio__proyectos-wrapper {
+  margin-bottom: 1rem;
+}
+
+/* Paginación (IDs existentes) */
+.portafolio__paginador {
+  display: flex;
+  justify-content: center;
+  gap: 1rem;
+}
+.portafolio__paginador button {
+  font-size: 12px;
+  padding: 8px 16px;
+  border-radius: 8px;
+  background: #00272d;
+  border: 1px solid #00424d;
+  color: hsla(200, 50%, 100%, 0.7);
+}
+.portafolio__paginador button.current {
+  background: #00b5cf !important;
+  color: #fff !important;
+}
+
+@media (max-width: 1024px) {
+  .portafolio__filtros--box button {
+    font-size: 14px;
+  }
+  .portafolio__proyectos {
+    grid-template-columns: repeat(3, 1fr);
+  }
+  .portafolio__proyecto {
+    padding-top: 100px;
+  }
+}
+@media (max-width: 767px) {
+  .portafolio__filtros {
+    position: sticky;
+    gap: 0.5rem;
+    top: 60px;
+    z-index: 3;
+    background: #001519;
+    mask-image: linear-gradient(
+      to bottom,
+      rgba(0, 0, 0, 1) 0%,
+      rgba(0, 0, 0, 1) 90%,
+      rgba(0, 0, 0, 0) 100%
+    );
+    padding-top: 0.5rem;
+    padding-bottom: 1rem;
+  }
+  .portafolio__filtros--box button {
+    font-size: 10px;
+    padding: 6px 10px;
+    line-height: 1em;
+    min-height: inherit;
+  }
+  .portafolio__proyectos {
+    grid-template-columns: repeat(2, 1fr);
+    padding-top: 40px;
+    grid-row-gap: 70px;
+  }
+  .portafolio__proyecto {
+    padding: 12px;
+    padding-top: 100px;
+  }
+  .portafolio__titulo h3 {
+    font-size: 12px;
+  }
+  .portafolio__categoria {
+    padding: 2px 6px;
+    font-size: 8px;
+    text-decoration: none;
+  }
+  .portafolio__paginador {
+    gap: 0.5rem;
+  }
+  .portafolio__paginador button {
+    font-size: 10px;
+    padding: 4px 12px;
+    border-radius: 8px;
+  }
+}
+
+/* “Sin resultados” (por si tu JS lo usa) */
+.no-results {
+  grid-column: 1/5;
+  color: #fff;
+  text-align: center;
+  padding: 2rem;
+  opacity: 0.7;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding-bottom: 100px;
+}
+@media (max-width: 1024px) {
+  .no-results {
+    grid-column: 1/4;
+  }
+}
+@media (max-width: 767px) {
+  .no-results {
+    grid-column: 1/3;
+  }
 }
