@@ -1,80 +1,50 @@
 voyect/
-│
-├── assets/
-│   ├── css/
-│   │   ├── admin/
-│   │   │   ├── ✅ admin-main.css
-│   │   │   ├── ✅ drag-drop.css
-│   │   │   └── ✅ modal.css
-│   │   └── frontend/
-│   │       ├── filters.css
-│   │       ├── pagination.css
-│   │       ├── ✅ portfolio-archive.css
-│   │       └── search.css
-│   ├── icons/
-│   │   └── remixicon/   (será instalado via npm o descargado)
-│   └── js/
-│       ├── admin/
-│       │   ├── ✅ admin-main.js
-│       │   ├── ✅ async-operations.js
-│       │   ├── ✅ drag-drop.js
-│       │   ├── ✅ modal.js
-│       │   └── ✅ shortcode-generator.js
-│       └── frontend/
-│           ├── async-filters.js
-│           ├── async-pagination.js
-│           ├── async-search.js
-│           ├── helpers.js
-│           └── ✅ portfolio-archive.js
-│
-├── includes/
-│   ├── controllers/
-│   │   ├── ✅ class-admin-controller.php
-│   │   ├── class-ajax-controller.php
-│   │   └── ✅ class-shortcode-controller.php
-│   ├── core/
-│   │   ├── ✅ class-voyect-activator.php
-│   │   ├── ✅ class-voyect-i18n.php
-│   │   ├── ✅ class-voyect-loader.php
-│   │   └── ✅ class-voyect.php
-│   ├── helpers/
-│   │   ├── class-ajax-handler.php
-│   │   ├── ✅ class-asset-loader.php
-│   │   └── class-common-functions.php
-│   ├── models/
-│   │   ├── class-project-model.php
-│   │   ├── class-settings-model.php
-│   │   └── class-voyect-model.php
-│   ├── shortcodes/
-│   │   └── class-portfolio-shortcode.php
-│   └── views/
-│       ├── admin/
-│       │   ├── ✅ admin-dashboard.php
-│       │   ├── ✅ modal-create.php
-│       │   ├── ✅ modal-edit.php
-│       │   ├── ✅ project-item.php
-│       │   ├── ✅ project-list.php
-│       │   └── ✅ shortcode-generator.php
-│       └── frontend/
-│           ├── filters.php
-│           ├── pagination.php
-│           ├── portfolio-archive.php
-│           ├── project-card.php
-│           └── search.php
-│
-├── languages/
-│   └── voyect.pot   (para traducciones)
-│
-├── templates/
-│   ├── archive-voyect.php
-│   └── single-voyect.php
-│
-├── vendor/
-│   ├── axios/       (opcional - si se incluye localmente)
-│   ├── autoload.php
-│   └── remixicon/   (opcional - si se incluye localmente)
-│
-└── ✅ voyect.php
+├─ assets/
+│  ├─ css/
+│  │  ├─ admin/
+│  │  │  ├─ admin-main.css
+│  │  │  ├─ drag-drop.css
+│  │  │  └─ modal.css
+│  │  └─ frontend/
+│  │     └─ portfolio-archive.css
+│  └─ js/
+│     ├─ admin/
+│     │  ├─ admin-main.js
+│     │  ├─ async-operations.js
+│     │  ├─ drag-drop.js
+│     │  ├─ modal.js
+│     │  └─ shortcode-generator.js
+│     └─ frontend/
+│        └─ portfolio-archive.js
+├─ dir.txt
+├─ includes/
+│  ├─ controllers/
+│  │  ├─ class-admin-controller.php
+│  │  ├─ class-ajax-controller.php
+│  │  └─ class-shortcode-controller.php
+│  ├─ core/
+│  │  ├─ class-voyect-activator.php
+│  │  ├─ class-voyect-archive-router.php
+│  │  ├─ class-voyect-i18n.php
+│  │  ├─ class-voyect-loader.php
+│  │  └─ class-voyect.php
+│  ├─ helpers/
+│  │  ├─ class-ajax-handler.php
+│  │  └─ class-asset-loader.php
+│  ├─ models/
+│  │  └─ class-project-model.php
+│  └─ views/
+│     ├─ admin/
+│     │  ├─ admin-dashboard.php
+│     │  ├─ modal-create.php
+│     │  ├─ modal-edit.php
+│     │  ├─ project-item.php
+│     │  ├─ project-list.php
+│     │  ├─ settings.php
+│     │  └─ shortcode-generator.php
+│     └─ frontend/
+│        └─ portfolio-archive.php
+└─ voyect.php
 
 te saltaste el protocolo y me mandaste un codigo sin pasar por el protocolo
 Recordatorio protocolo P7
@@ -105,3 +75,23 @@ ahora quiero que nos enfoquemos en las siguientes cosas
 - Hacer que el modulo de creación de shortcode funcione tanto en el backend cuando se crea como en el frontend cuando se usa 
 - agregar un filtro de orden en la lista de proyectos del backend para que por defecto esten ordenados por fecha pero se pueda cambiar
 - hacer que funcione el orden por el drag and drop
+
+
+
+
+desde ahora no me mandes codigo sin pasar por el protocolo
+Recordatorio protocolo P7
+1. revisas mi repositorio https://github.com/dimefipe/voyect para contextualizarte de cada cosa que hay en el 
+2. Me indicas la lista de ficheros que revisaste para solucionar el problema  
+> Fichero 1.extension
+> Fichero 2.extension
+> Fichero 3.extension
+3. Me envias un fichero completo en orden secuencia 1 a 1, hasta terminar con el problema listado en el paso 2
+4. Me mandas el fichero completo 
+5. Actualizo el fichero completo y en un solo trozo de codigo (no puedes enviarlo por separado porque me tardo mucho en revisar donde va cada parte) 
+4. Quedas esperando feedback (comentario o screenshot)
+5.1 Si hay error iteramos
+5.2 Si esta ok, marcas check con este icono ✅ Fichero 1.extension, me pides el siguiente fichero, y si ya terminamos la lista del problema me preguntas con que funcionalidad seguir, y seguimos al siguiente fichero que tu me indiques para lograr la funcionalidad
+
+si no te acuerdas del contexto directorio, pideme que te lo vuelva a mostrar para pedirme el fichero exacto 
+Recuerda que como estamos en modo desarrollo a todos los ficheros ponle logs en consola o vardump en lugares criticos para avanzar en la depuración y correción
