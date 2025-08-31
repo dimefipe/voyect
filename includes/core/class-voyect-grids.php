@@ -72,14 +72,25 @@ class Voyect_Grids {
   public static function render_metabox($post){
     wp_nonce_field('voyect_grid_meta', 'voyect_grid_nonce');
 
-    $get = function($k,$d=''){ $v = get_post_meta($post->ID,$k,true); return $v !== '' ? $v : $d; };
+    // LOG: post actual
+    error_log('[Voyect][Grids] render_metabox() para post #'.$post->ID);
 
-    $cols_desktop = (int)$get('_voyect_cols_desktop', 4);
-    $cols_tablet  = (int)$get('_voyect_cols_tablet', 2);
-    $cols_mobile  = (int)$get('_voyect_cols_mobile', 1);
-    $gap          = (int)$get('_voyect_gap', 24);
+    // FIX: capturamos $post dentro del closure con "use ($post)"
+    $get = function($k, $d = '') use ($post) {
+      $v = get_post_meta($post->ID, $k, true);
+      return ($v !== '' ? $v : $d);
+    };
+
+    $cols_desktop = (int) $get('_voyect_cols_desktop', 4);
+    $cols_tablet  = (int) $get('_voyect_cols_tablet', 2);
+    $cols_mobile  = (int) $get('_voyect_cols_mobile', 1);
+    $gap          = (int) $get('_voyect_gap', 24);
     $container    = $get('_voyect_container', ''); // px o vacío
 
+    // Log de lectura previa
+    error_log('[Voyect][Grids] preload #'.$post->ID.' -> '. wp_json_encode([
+      'cols_desktop'=>$cols_desktop,'cols_tablet'=>$cols_tablet,'cols_mobile'=>$cols_mobile,'gap'=>$gap,'container'=>$container
+    ]));
     ?>
     <style>
       .voyect-grid-table td{padding:8px 10px; vertical-align: middle;}
